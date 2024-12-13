@@ -42,14 +42,24 @@ public class Main
 	// This method should implement Algorithm 2 and print all neccessary data
 	public static void algorithm2(String input)
 	{
+		String lowIn = input.toLowerCase();
 		String unique = "";
-		for (int i = 1; i < input.length(); i++) {
-			String c = input.substring(i, i+1);
-			if (unique.indexOf(c) != -1) {
-
+		int count = 0, uniqueCount = 0;
+		for (int i = 0; i < lowIn.length(); i++) {
+			String c = lowIn.substring(i, i+1);
+			if (unique.indexOf(c) == -1 && !(c.equals(" "))) {
+				uniqueCount++;
+				for (int j = 0; j < lowIn.length(); j++) {
+					if (c.equals(lowIn.substring(j, j+1))){
+						count++;
+					}
+				}
+				unique = unique + count + c;
+				count = 0;
 			}
-
 		}
-		System.out.println("Implement me!");
+		int saved = input.length() - unique.length();
+		if (saved <= 0) {saved = 0;}
+		System.out.println("Algorithm 2\nUnique characters found: " + uniqueCount + "\nAlgorithm 2 message: " + unique + "\nAlgorithm 2 characters saved: " + saved);
 	}
 }
